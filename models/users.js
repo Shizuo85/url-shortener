@@ -4,11 +4,6 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-	fullName: {
-		type: String,
-		required: [true, 'Must have name'],
-		trim: true,
-	},
 	userName: {
 		type: String,
 		unique: true,
@@ -23,14 +18,6 @@ const userSchema = new mongoose.Schema({
 		required: [true, 'Must have email'],
 		lowercase: true,
 		validate: [validator.isEmail, 'Please provide a valid email'],
-	},
-	gender: {
-		type: String,
-		required: [true, 'Gender is required'],
-		enum: {
-			values: ['Male', 'Female', 'Other'],
-			message: 'gender is either: Male, Female or Other',
-		},
 	},
 	password: {
 		type: String,
@@ -50,7 +37,6 @@ const userSchema = new mongoose.Schema({
 	},
 	passwordResetToken: String,
 	passwordResetExpires: Date,
-	confirmEmailToken: String,
 	loggedOut: {
 		type: Boolean,
 		default: true,
