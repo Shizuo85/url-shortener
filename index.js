@@ -1,13 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
-const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const userRoute = require('./routes/users');
-const taskRoute = require('./routes/tasks');
+const urlRoute = require('./routes/url');
 const connectDB = require('./DB/connect');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./utils/globalErrors');
@@ -36,7 +35,7 @@ app.use(mongoSanitize());
 //Data sanitization against xss(html code attack)
 app.use(xss());
 
-app.use('/api/v1/tasks', taskRoute);
+app.use('/api/v1/url', urlRoute);
 app.use('/api/v1/users', userRoute);
 
 app.all('*', (req, res, next) => {
