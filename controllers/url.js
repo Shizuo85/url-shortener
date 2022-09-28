@@ -10,17 +10,17 @@ const getAllUrls = catchAsync(async (req, res, next) => {
 	if (!urls) {
 		return next(new AppError('You have no pending urls', 404));
 	}
-	res.status(200).json({ tasks });
+	res.status(200).json({ urls });
 });
 
 const shortenUrl = catchAsync(async (req, res) => {
 	req.body.createdBy = req.user.id;
-	const task = await Task.create({
+	const url = await Url.create({
 		fullUrl: req.body.fullUrl,
 		createdBy: req.user.id,
 		shortUrl: shortid.generate(req.body.fullUrl)
 	});
-	res.status(201).json({ task });
+	res.status(201).json({ url });
 });
 
 const redirectUrl = catchAsync( async (req, res, next)=> {
