@@ -1,8 +1,9 @@
 const Url = require('../models/url');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const shortid = require("shorturl")
+const shortid = require("shortid")
 
+console.log(shortid.generate())
 const getAllUrls = catchAsync(async (req, res, next) => {
 	const urls = await Url.find({ createdBy: req.user.id });
 	if (!urls) {
