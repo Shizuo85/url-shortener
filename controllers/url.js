@@ -27,7 +27,7 @@ const redirectUrl = catchAsync( async (req, res, next)=> {
 	if (!url) {
 		return next(new AppError(`no url shortened as: ${req.params.short}`, 404));
 	}
-	res.direct(url.fullUrl)
+	res.redirect(url.fullUrl)
 })
 
 const deleteUrl = catchAsync(async (req, res, next) => {
