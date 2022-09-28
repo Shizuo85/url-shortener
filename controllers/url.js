@@ -1,7 +1,5 @@
 const Url = require('../models/url');
-const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
-const User = require('../models/users');
 const AppError = require('../utils/appError');
 const shortid = require("shorturl")
 
@@ -18,7 +16,7 @@ const shortenUrl = catchAsync(async (req, res) => {
 	const url = await Url.create({
 		fullUrl: req.body.fullUrl,
 		createdBy: req.user.id,
-		shortUrl: shortid.generate(req.body.fullUrl)
+		shortUrl: shortid.generate()
 	});
 	res.status(201).json({ url });
 });
