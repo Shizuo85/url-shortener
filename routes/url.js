@@ -10,9 +10,9 @@ const {
 
 const { protect } = require('../controllers/users');
 
-router.route("/shortenUrl").post(shortenUrl)
-router.route("/").get(getAllUrls)
+router.route("/shortenUrl").post(protect, shortenUrl)
+router.route("/").get(protect, getAllUrls)
 router.route("/:short").get(redirectUrl)
-router.route("/:id").delete(deleteUrl)
+router.route("/:id").delete(protect, deleteUrl)
 
 module.exports = router;
