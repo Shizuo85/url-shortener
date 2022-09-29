@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
 	},
 	passwordResetToken: String,
 	passwordResetExpires: Date,
+	confirmEmailToken: String,
 	loggedOut: {
 		type: Boolean,
 		default: true,
